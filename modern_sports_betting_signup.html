@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberBet - Join the Future of Betting</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Orbitron & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Orbitron', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              neon: '#00ff88',
+              cyan: '#00f0ff',
+              purple: '#7000ff',
+              dark: '#0a0d14',
+              card: '#121722',
+              input: '#1a202c',
+              border: '#2a3447'
+            }
+          },
+          boxShadow: {
+            'neon-green': '0 0 20px rgba(0, 255, 136, 0.35)',
+            'neon-cyan': '0 0 20px rgba(0, 240, 255, 0.35)',
+            'neon-purple': '0 0 25px rgba(112, 0, 255, 0.4)',
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 3s ease-in-out infinite',
+            'glow': 'glow 2s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            glow: {
+              '0%': { filter: 'drop-shadow(0 0 5px rgba(0, 255, 136, 0.4))' },
+              '100%': { filter: 'drop-shadow(0 0 15px rgba(0, 240, 255, 0.8))' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* Custom scrollbar & futuristic background effects */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0d14;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a3447;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00ff88;
+    }
+    
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+
+    .robot-svg-glow {
+      filter: drop-shadow(0px 0px 12px rgba(0, 255, 136, 0.4));
+    }
+    
+    /* Smooth tab step animation */
+    .step-transition {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+</head>
+<body class="h-full text-slate-100 bg-brand-dark bg-grid-pattern font-sans antialiased flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8 relative overflow-x-hidden">
+
+  <!-- Background Ambient Glow Orbs -->
+  <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-purple/20 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-96 h-96 bg-brand-cyan/20 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="absolute top-1/2 right-1/3 w-64 h-64 bg-brand-neon/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <!-- Main Container -->
+  <div class="w-full max-w-5xl bg-brand-card/90 backdrop-blur-xl border border-brand-border/60 rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row relative z-10 my-auto">
+    
+    <!-- LEFT PANEL: Animated Robot & Hero Banner -->
+    <div class="w-full md:w-5/12 bg-gradient-to-br from-slate-900/90 via-brand-dark to-slate-950 p-6 sm:p-8 flex flex-col justify-between items-center relative border-b md:border-b-0 md:border-r border-brand-border/50 overflow-hidden">
+      
+      <!-- Top Branding -->
+      <div class="w-full flex items-center justify-between z-10">
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-neon to-brand-cyan flex items-center justify-center text-slate-950 font-black text-xl font-display shadow-neon-green">
+            C
+          </div>
+          <span class="font-display text-xl font-bold tracking-wider text-white">CYBER<span class="text-brand-neon">BET</span></span>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-full bg-brand-neon/10 text-brand-neon border border-brand-neon/30 font-mono tracking-wide uppercase">
+          v2.4 AI Live
+        </span>
+      </div>
+
+      <!-- Animated SVG Robot Mascot -->
+      <div class="my-8 relative flex flex-col items-center justify-center w-full z-10">
+        <!-- Pulse Rings behind Robot -->
+        <div class="absolute w-48 h-48 rounded-full border border-brand-neon/20 animate-ping opacity-20 pointer-events-none"></div>
+        <div class="absolute w-64 h-64 rounded-full border border-brand-cyan/20 animate-pulse-slow pointer-events-none"></div>
+
+        <!-- Animated SVG Robot Graphic -->
+        <div class="w-52 h-52 sm:w-60 sm:h-60 relative animate-float transition-all duration-300" id="robotContainer">
+          <svg viewBox="0 0 200 200" class="w-full h-full robot-svg-glow" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Neon Gradients -->
+              <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1e293b"/>
+                <stop offset="100%" stop-color="#0f172a"/>
+              </linearGradient>
+              <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00ff88"/>
+                <stop offset="100%" stop-color="#00f0ff"/>
+              </linearGradient>
+              <linearGradient id="visorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#0a0d14"/>
+                <stop offset="100%" stop-color="#121824"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Antenna -->
+            <path d="M100 35 L100 15" stroke="url(#neonGrad)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="100" cy="12" r="5" fill="#00ff88" class="animate-pulse"/>
+            
+            <!-- Ears / Side Sensors -->
+            <rect x="42" y="55" width="10" height="25" rx="3" fill="#334155"/>
+            <rect x="148" y="55" width="10" height="25" rx="3" fill="#334155"/>
+            <circle cx="47" cy="67" r="2" fill="#00f0ff"/>
+            <circle cx="153" cy="67" r="2" fill="#00f0ff"/>
+
+            <!-- Robot Head Base -->
+            <rect x="50" y="32" width="100" height="75" rx="20" fill="url(#bodyGrad)" stroke="#334155" stroke-width="3"/>
+            
+            <!-- Visor Screen -->
+            <rect x="60" y="45" width="80" height="48" rx="12" fill="url(#visorGrad)" stroke="url(#neonGrad)" stroke-width="1.5"/>
+
+            <!-- Interactive Eyes Container -->
+            <g id="robotEyes">
+              <!-- Default Normal Eyes -->
+              <g id="eyesDefault" class="transition-opacity duration-300">
+                <ellipse cx="80" cy="68" rx="7" ry="9" fill="#00ff88"/>
+                <ellipse cx="120" cy="68" rx="7" ry="9" fill="#00ff88"/>
+                <!-- Eye Highlights -->
+                <circle cx="78" cy="64" r="2.5" fill="#ffffff"/>
+                <circle cx="118" cy="64" r="2.5" fill="#ffffff"/>
+              </g>
+
+              <!-- Happy / Wink Eyes (Hidden by default) -->
+              <g id="eyesHappy" class="opacity-0 transition-opacity duration-300">
+                <path d="M73 70 Q80 60 87 70" stroke="#00ff88" stroke-width="4" stroke-linecap="round" fill="none"/>
+                <path d="M113 70 Q120 60 127 70" stroke="#00ff88" stroke-width="4" stroke-linecap="round" fill="none"/>
+              </g>
+
+              <!-- Typing / Focus Eyes (Password/Inputs) -->
+              <g id="eyesFocus" class="opacity-0 transition-opacity duration-300">
+                <ellipse cx="80" cy="68" rx="9" ry="3" fill="#00f0ff"/>
+                <ellipse cx="120" cy="68" rx="9" ry="3" fill="#00f0ff"/>
+              </g>
+            </g>
+
+            <!-- Mouth/Equalizer Lines -->
+            <g id="robotMouth" class="transition-all duration-300">
+              <rect x="85" y="82" width="4" height="4" rx="1" fill="#00f0ff"/>
+              <rect x="92" y="80" width="4" height="8" rx="1" fill="#00ff88"/>
+              <rect x="99" y="81" width="4" height="6" rx="1" fill="#00ff88"/>
+              <rect x="106" y="80" width="4" height="8" rx="1" fill="#00ff88"/>
+              <rect x="111" y="82" width="4" height="4" rx="1" fill="#00f0ff"/>
+            </g>
+
+            <!-- Body/Shoulders -->
+            <path d="M60 112 L140 112 L155 160 C155 165 150 170 142 170 L58 170 C50 170 45 165 45 160 Z" fill="url(#bodyGrad)" stroke="#334155" stroke-width="3"/>
+            
+            <!-- Chest Logo / Core Pulse -->
+            <circle cx="100" cy="138" r="12" fill="#0a0d14" stroke="url(#neonGrad)" stroke-width="2"/>
+            <polygon points="100,131 106,142 94,142" fill="#00ff88" class="animate-pulse"/>
+            
+            <!-- Shoulder Accents -->
+            <circle cx="62" cy="125" r="4" fill="#00f0ff"/>
+            <circle cx="138" cy="125" r="4" fill="#00f0ff"/>
+          </svg>
+        </div>
+
+        <!-- Dynamic AI Speech Bubble -->
+        <div id="aiSpeech" class="mt-2 bg-slate-900/90 border border-brand-neon/40 px-4 py-2 rounded-2xl text-xs text-brand-neon font-mono shadow-neon-green/20 text-center max-w-[220px] transition-all duration-300">
+          "Ready to activate your $1,000 Welcome Bonus?"
+        </div>
+      </div>
+
+      <!-- Feature Highlights -->
+      <div class="w-full space-y-3 z-10">
+        <div class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-900/50 border border-slate-800/80">
+          <div class="p-2 rounded-lg bg-brand-neon/10 text-brand-neon">
+            <i data-lucide="zap" class="w-4 h-4"></i>
+          </div>
+          <div class="text-xs">
+            <p class="font-semibold text-white">Instant Withdrawals</p>
+            <p class="text-slate-400">Crypto & Fiat processed in under 60s</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-900/50 border border-slate-800/80">
+          <div class="p-2 rounded-lg bg-brand-cyan/10 text-brand-cyan">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+          </div>
+          <div class="text-xs">
+            <p class="font-semibold text-white">AI-Powered Odds</p>
+            <p class="text-slate-400">20% Boost on your first acca bet</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer indicator -->
+      <div class="mt-6 text-[10px] text-slate-500 font-mono text-center">
+        PROBABILITIES ENHANCED BY CYBER-BOT V2.4
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: Multi-step Signup Form -->
+    <div class="w-full md:w-7/12 p-6 sm:p-10 flex flex-col justify-between bg-brand-card relative">
+      
+      <!-- Registration Header & Step Progress Bar -->
+      <div id="formHeader">
+        <div class="flex justify-between items-end mb-4">
+          <div>
+            <h1 class="font-display text-2xl sm:text-3xl font-black text-white tracking-wide">
+              CREATE <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-neon to-brand-cyan">ACCOUNT</span>
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1">Claim your 200% matched deposit match up to $1,000</p>
+          </div>
+          <span class="text-xs font-mono text-brand-cyan font-semibold bg-brand-cyan/10 px-3 py-1 rounded-full border border-brand-cyan/30" id="stepCounter">
+            STEP 1/2
+          </span>
+        </div>
+
+        <!-- Progress Track -->
+        <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden mb-6">
+          <div id="progressBar" class="bg-gradient-to-r from-brand-neon to-brand-cyan h-full w-1/2 transition-all duration-500 rounded-full shadow-neon-green"></div>
+        </div>
+      </div>
+
+      <!-- FORM CONTENT CONTAINER -->
+      <form id="signupForm" class="space-y-5" onsubmit="return false;" novalidate>
+        
+        <!-- STEP 1: Account Credentials -->
+        <div id="step1" class="step-transition space-y-4">
+          
+          <!-- Email Input -->
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5 uppercase tracking-wider">Email Address</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </div>
+              <input type="email" id="email" required
+                class="w-full pl-10 pr-4 py-3 bg-brand-input border border-slate-700/80 rounded-xl focus:ring-2 focus:ring-brand-neon focus:border-transparent text-sm text-white placeholder-slate-500 outline-none transition-all"
+                placeholder="cyber.punter@domain.com"
+                autocomplete="email">
+            </div>
+            <p id="emailError" class="text-xs text-rose-400 mt-1 hidden flex items-center gap-1">
+              <i data-lucide="alert-circle" class="w-3 h-3"></i> Please enter a valid email address.
+            </p>
+          </div>
+
+          <!-- Username Input -->
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5 uppercase tracking-wider">Cyber Tag (Username)</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                <i data-lucide="user" class="w-4 h-4"></i>
+              </div>
+              <input type="text" id="username" required
+                class="w-full pl-10 pr-4 py-3 bg-brand-input border border-slate-700/80 rounded-xl focus:ring-2 focus:ring-brand-neon focus:border-transparent text-sm text-white placeholder-slate-500 outline-none transition-all"
+                placeholder="NeonBettor99"
+                autocomplete="username">
+            </div>
+            <p id="usernameError" class="text-xs text-rose-400 mt-1 hidden flex items-center gap-1">
+              <i data-lucide="alert-circle" class="w-3 h-3"></i> Username must be at least 4 characters long.
+            </p>
+          </div>
+
+          <!-- Password Input with Strength Indicator -->
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5 uppercase tracking-wider">Access Code (Password)</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+              </div>
+              <input type="password" id="password" required
+                class="w-full pl-10 pr-10 py-3 bg-brand-input border border-slate-700/80 rounded-xl focus:ring-2 focus:ring-brand-neon focus:border-transparent text-sm text-white placeholder-slate-500 outline-none transition-all"
+                placeholder="••••••••••••"
+                autocomplete="new-password">
+              <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-300">
+                <i data-lucide="eye" class="w-4 h-4" id="eyeIcon"></i>
+              </button>
+            </div>
+            
+            <!-- Password Strength Meter -->
+            <div class="mt-2 flex items-center gap-2">
+              <div class="flex-1 bg-slate-800 h-1 rounded-full overflow-hidden flex gap-1">
+                <div id="strBar1" class="h-full w-1/3 bg-slate-700 transition-colors"></div>
+                <div id="strBar2" class="h-full w-1/3 bg-slate-700 transition-colors"></div>
+                <div id="strBar3" class="h-full w-1/3 bg-slate-700 transition-colors"></div>
+              </div>
+              <span id="strengthText" class="text-[10px] font-mono text-slate-400 uppercase">Weak</span>
+            </div>
+            <p id="passwordError" class="text-xs text-rose-400 mt-1 hidden flex items-center gap-1">
+              <i data-lucide="alert-circle" class="w-3 h-3"></i> Minimum 8 chars with letters & numbers.
+            </p>
+          </div>
+
+          <!-- Step 1 Next Button -->
+          <button type="button" id="btnNext" class="w-full mt-4 py-3.5 px-6 rounded-xl bg-gradient-to-r from-brand-neon to-brand-cyan text-slate-950 font-bold font-display tracking-wider text-sm hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 shadow-neon-green">
+            CONTINUE TO PROFILE
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- STEP 2: Personal Info & Verification (Hidden Initially) -->
+        <div id="step2" class="step-transition space-y-4 hidden">
+          
+          <!-- Date of Birth -->
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5 uppercase tracking-wider">Date of Birth (18+ Only)</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+              </div>
+              <input type="date" id="dob" required
+                class="w-full pl-10 pr-4 py-3 bg-brand-input border border-slate-700/80 rounded-xl focus:ring-2 focus:ring-brand-neon focus:border-transparent text-sm text-white placeholder-slate-500 outline-none transition-all color-scheme-dark">
+            </div>
+            <p id="dobError" class="text-xs text-rose-400 mt-1 hidden flex items-center gap-1">
+              <i data-lucide="alert-circle" class="w-3 h-3"></i> You must be at least 18 years old to join.
+            </p>
+          </div>
+
+          <!-- Promo Code (Optional with VIP tag) -->
+          <div>
+            <div class="flex justify-between items-center mb-1.5">
+              <label class="block text-xs font-medium text-slate-300 uppercase tracking-wider">Promo / Referral Code</label>
+              <span class="text-[10px] text-brand-neon font-mono">OPTIONAL (+100 FREE SPINS)</span>
+            </div>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                <i data-lucide="gift" class="w-4 h-4"></i>
+              </div>
+              <input type="text" id="promoCode" value="CYBER200"
+                class="w-full pl-10 pr-24 py-3 bg-brand-input border border-brand-neon/40 rounded-xl focus:ring-2 focus:ring-brand-neon focus:border-transparent text-sm text-brand-neon font-mono font-semibold uppercase placeholder-slate-500 outline-none transition-all">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 bg-brand-neon/10 text-brand-neon text-[10px] font-mono px-2 py-1 rounded border border-brand-neon/30">
+                APPLIED
+              </span>
+            </div>
+          </div>
+
+          <!-- Interactive Terms Toggle Switch -->
+          <div class="pt-2">
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <div class="relative flex items-center mt-0.5">
+                <input type="checkbox" id="termsCheck" class="sr-only peer">
+                <div class="w-10 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-400 after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand-neon peer-checked:after:bg-slate-950 peer-checked:after:border-transparent"></div>
+              </div>
+              <span class="text-xs text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">
+                I confirm I am over 18 years of age and agree to the 
+                <a href="#" class="text-brand-cyan hover:underline">Terms of Service</a>, 
+                <a href="#" class="text-brand-cyan hover:underline">Privacy Policy</a> & 
+                <a href="#" class="text-brand-neon hover:underline">Responsible Gaming Rules</a>.
+              </span>
+            </label>
+            <p id="termsError" class="text-xs text-rose-400 mt-1 hidden flex items-center gap-1">
+              <i data-lucide="alert-circle" class="w-3 h-3"></i> You must accept the terms to complete registration.
+            </p>
+          </div>
+
+          <!-- Action Buttons (Back & Complete) -->
+          <div class="flex gap-3 pt-3">
+            <button type="button" id="btnBack" class="w-1/3 py-3.5 px-4 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 font-semibold text-sm hover:bg-slate-700 transition-all flex items-center justify-center gap-1">
+              <i data-lucide="arrow-left" class="w-4 h-4"></i> BACK
+            </button>
+            <button type="submit" id="btnSubmit" class="w-2/3 py-3.5 px-6 rounded-xl bg-gradient-to-r from-brand-neon via-brand-cyan to-brand-neon bg-[length:200%_100%] animate-gradient text-slate-950 font-black font-display tracking-wider text-sm hover:shadow-neon-cyan active:scale-[0.99] transition-all flex items-center justify-center gap-2">
+              <span>INITIALIZE ACCOUNT</span>
+              <i data-lucide="zap" class="w-4 h-4 fill-current"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- SUCCESS CONFIRMATION STATE (Hidden by default) -->
+      <div id="successState" class="hidden flex-col items-center justify-center text-center py-8 space-y-6 animate-fade-in">
+        <div class="w-20 h-20 rounded-full bg-brand-neon/20 border-2 border-brand-neon flex items-center justify-center text-brand-neon shadow-neon-green animate-bounce">
+          <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+        </div>
+        
+        <div class="space-y-2">
+          <h2 class="font-display text-2xl font-black text-white tracking-wider">ACCESS GRANTED!</h2>
+          <p class="text-sm text-slate-300 max-w-sm">
+            Welcome to the future of gaming, <span id="userTag" class="text-brand-neon font-semibold">Bettor</span>. Your $1,000 bonus has been credited.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-brand-border w-full max-w-xs space-y-2 text-xs font-mono text-left">
+          <div class="flex justify-between text-slate-400">
+            <span>STATUS:</span>
+            <span class="text-brand-neon">VERIFIED</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>BONUS CODE:</span>
+            <span class="text-brand-cyan">CYBER200 (+100 SPINS)</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>SECURITY LEVEL:</span>
+            <span class="text-purple-400">ENCRYPTED 256-BIT</span>
+          </div>
+        </div>
+
+        <button onclick="location.reload()" class="w-full max-w-xs py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm border border-slate-700 transition-all flex items-center justify-center gap-2">
+          <i data-lucide="refresh-cw" class="w-4 h-4"></i> DEMO AGAIN
+        </button>
+      </div>
+
+      <!-- Social Login / Quick Options Footer -->
+      <div id="socialFooter" class="mt-6 pt-6 border-t border-slate-800/80">
+        <div class="flex items-center justify-between text-xs text-slate-400 mb-3">
+          <span>OR FAST REGISTER WITH</span>
+          <a href="#" class="text-brand-neon hover:underline font-semibold">Already have an account? Log In</a>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <button class="py-2.5 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 flex items-center justify-center text-xs font-medium text-slate-300 hover:bg-slate-800 transition-all">
+            Google
+          </button>
+          <button class="py-2.5 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 flex items-center justify-center text-xs font-medium text-slate-300 hover:bg-slate-800 transition-all">
+            Telegram
+          </button>
+          <button class="py-2.5 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 flex items-center justify-center text-xs font-medium text-slate-300 hover:bg-slate-800 transition-all">
+            Metamask
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // DOM Elements
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const btnNext = document.getElementById('btnNext');
+    const btnBack = document.getElementById('btnBack');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const progressBar = document.getElementById('progressBar');
+    const stepCounter = document.getElementById('stepCounter');
+    const signupForm = document.getElementById('signupForm');
+    const successState = document.getElementById('successState');
+    const socialFooter = document.getElementById('socialFooter');
+    const formHeader = document.getElementById('formHeader');
+
+    // Inputs & Errors
+    const emailInput = document.getElementById('email');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const dobInput = document.getElementById('dob');
+    const termsCheck = document.getElementById('termsCheck');
+    const togglePasswordBtn = document.getElementById('togglePassword');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    // Robot Eyes & Speech Bubble Elements
+    const eyesDefault = document.getElementById('eyesDefault');
+    const eyesHappy = document.getElementById('eyesHappy');
+    const eyesFocus = document.getElementById('eyesFocus');
+    const aiSpeech = document.getElementById('aiSpeech');
+    const robotContainer = document.getElementById('robotContainer');
+
+    // Robot Reactivity Helper
+    function setRobotState(state, speechText) {
+      eyesDefault.classList.add('opacity-0');
+      eyesHappy.classList.add('opacity-0');
+      eyesFocus.classList.add('opacity-0');
+
+      if (state === 'happy') eyesHappy.classList.remove('opacity-0');
+      else if (state === 'focus') eyesFocus.classList.remove('opacity-0');
+      else eyesDefault.classList.remove('opacity-0');
+
+      if (speechText) {
+        aiSpeech.innerText = `"${speechText}"`;
+        aiSpeech.classList.add('scale-105');
+        setTimeout(() => aiSpeech.classList.remove('scale-105'), 200);
+      }
+    }
+
+    // Input Focus Event Listeners for Robot reaction
+    emailInput.addEventListener('focus', () => setRobotState('focus', 'Inputting credentials... system listening.'));
+    usernameInput.addEventListener('focus', () => setRobotState('focus', 'Choose a powerful handle!'));
+    passwordInput.addEventListener('focus', () => setRobotState('focus', 'Encrypting passkey security layer...'));
+    dobInput.addEventListener('focus', () => setRobotState('focus', 'Verifying age compliance...'));
+
+    // Input Blur Restores Default
+    [emailInput, usernameInput, passwordInput, dobInput].forEach(input => {
+      input.addEventListener('blur', () => setRobotState('default', 'Ready to activate your $1,000 Welcome Bonus?'));
+    });
+
+    // Password Strength Meter Listener
+    passwordInput.addEventListener('input', (e) => {
+      const val = e.target.value;
+      const strBar1 = document.getElementById('strBar1');
+      const strBar2 = document.getElementById('strBar2');
+      const strBar3 = document.getElementById('strBar3');
+      const strengthText = document.getElementById('strengthText');
+
+      let strength = 0;
+      if (val.length >= 8) strength++;
+      if (/[A-Z]/.test(val) && /[0-9]/.test(val)) strength++;
+      if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+      // Reset bars
+      strBar1.className = 'h-full w-1/3 transition-colors bg-slate-700';
+      strBar2.className = 'h-full w-1/3 transition-colors bg-slate-700';
+      strBar3.className = 'h-full w-1/3 transition-colors bg-slate-700';
+
+      if (strength === 1) {
+        strBar1.classList.replace('bg-slate-700', 'bg-rose-500');
+        strengthText.innerText = 'WEAK';
+        strengthText.className = 'text-[10px] font-mono text-rose-400 uppercase';
+      } else if (strength === 2) {
+        strBar1.classList.replace('bg-slate-700', 'bg-amber-400');
+        strBar2.classList.replace('bg-slate-700', 'bg-amber-400');
+        strengthText.innerText = 'MEDIUM';
+        strengthText.className = 'text-[10px] font-mono text-amber-400 uppercase';
+      } else if (strength >= 3) {
+        strBar1.classList.replace('bg-slate-700', 'bg-brand-neon');
+        strBar2.classList.replace('bg-slate-700', 'bg-brand-neon');
+        strBar3.classList.replace('bg-slate-700', 'bg-brand-neon');
+        strengthText.innerText = 'CYBER SECURE';
+        strengthText.className = 'text-[10px] font-mono text-brand-neon uppercase';
+      } else {
+        strengthText.innerText = 'WEAK';
+        strengthText.className = 'text-[10px] font-mono text-slate-400 uppercase';
+      }
+    });
+
+    // Toggle Password Visibility
+    togglePasswordBtn.addEventListener('click', () => {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      eyeIcon.setAttribute('data-lucide', type === 'password' ? 'eye' : 'eye-off');
+      lucide.createIcons();
+    });
+
+    // Step 1 Validation & Transition
+    btnNext.addEventListener('click', () => {
+      let isValid = true;
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailInput.value)) {
+        document.getElementById('emailError').classList.remove('hidden');
+        isValid = false;
+      } else {
+        document.getElementById('emailError').classList.add('hidden');
+      }
+
+      // Username validation
+      if (usernameInput.value.trim().length < 4) {
+        document.getElementById('usernameError').classList.remove('hidden');
+        isValid = false;
+      } else {
+        document.getElementById('usernameError').classList.add('hidden');
+      }
+
+      // Password validation
+      if (passwordInput.value.length < 8) {
+        document.getElementById('passwordError').classList.remove('hidden');
+        isValid = false;
+      } else {
+        document.getElementById('passwordError').classList.add('hidden');
+      }
+
+      if (isValid) {
+        step1.classList.add('hidden');
+        step2.classList.remove('hidden');
+        progressBar.style.width = '100%';
+        stepCounter.innerText = 'STEP 2/2';
+        setRobotState('happy', 'Almost done! Verify your details now.');
+      } else {
+        setRobotState('focus', 'Error! Please fix highlighted fields.');
+      }
+    });
+
+    // Step 2 Back Button
+    btnBack.addEventListener('click', () => {
+      step2.classList.add('hidden');
+      step1.classList.remove('hidden');
+      progressBar.style.width = '50%';
+      stepCounter.innerText = 'STEP 1/2';
+      setRobotState('default', 'Ready to activate your $1,000 Welcome Bonus?');
+    });
+
+    // Final Form Submission
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      // DOB Age Check (18+)
+      if (!dobInput.value) {
+        document.getElementById('dobError').classList.remove('hidden');
+        isValid = false;
+      } else {
+        const birthDate = new Date(dobInput.value);
+        const ageDifMs = Date.now() - birthDate.getTime();
+        const ageDate = new Date(ageDifMs);
+        const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+        if (age < 18) {
+          document.getElementById('dobError').classList.remove('hidden');
+          isValid = false;
+        } else {
+          document.getElementById('dobError').classList.add('hidden');
+        }
+      }
+
+      // Terms Checkbox Validation
+      if (!termsCheck.checked) {
+        document.getElementById('termsError').classList.remove('hidden');
+        isValid = false;
+      } else {
+        document.getElementById('termsError').classList.add('hidden');
+      }
+
+      if (isValid) {
+        // Trigger Success Sequence
+        signupForm.classList.add('hidden');
+        formHeader.classList.add('hidden');
+        socialFooter.classList.add('hidden');
+        successState.classList.remove('hidden');
+        document.getElementById('userTag').innerText = `@${usernameInput.value}`;
+
+        // Happy Robot Celebration State
+        setRobotState('happy', 'WELCOME ABOARD! Registration Complete!');
+        robotContainer.classList.add('scale-110');
+
+        // Fire Confetti Animation
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#00ff88', '#00f0ff', '#7000ff']
+          });
+        }
+      } else {
+        setRobotState('focus', 'Verification error! Check legal terms & DOB.');
+      }
+    });
+  </script>
+</body>
+</html>
